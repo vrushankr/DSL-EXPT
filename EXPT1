@@ -1,0 +1,90 @@
+#include<stdio.h>
+void push();
+void pop();
+int peep(int i);
+void change(int i);
+void display(int i);
+int top=-1;
+
+int arr[100];
+int Exit=0;
+int main()
+{
+    int choice;
+    int n;
+    do
+   {
+    printf("\n\t1.push  \t2.pop   \t3.Peep   \t.4.change   \t5.Display  \t6.Exit\n");
+    printf("\nEnter your choice :");    
+    scanf("\n%d",&choice);
+    switch (choice)
+     {
+    case 1 :
+        push();
+        break;
+    case 2:
+         pop();
+        break;
+    case 3:        
+        printf("\nEnter which nth to find :");
+        scanf("%d",&n);
+       printf("No. at  %dth position : %d ",n,peep(n));
+        break;
+    case 4:
+        printf("\nEnter which nth to change :");
+        scanf("%d",&n);
+        change(n);
+        break;
+    case 5 :
+        display(top);
+        break;    
+    case 6 :
+        Exit = 1;
+        break ;
+
+    default:
+        printf(" \nEnter valid choice\n ");
+     }
+   }while(Exit==0);
+   return 0;
+}
+
+void push()
+{
+    if (top>=100){
+      printf("Stack overflow :");  return;
+     }
+    top++;
+     printf("\nEnter a no. you wanna push into stack :");
+     scanf("%d",&arr[top]);     
+}
+
+void pop()
+{
+    if(top <=-1){
+      printf("Stack underflow :");  return;
+     }
+     top--;
+     printf("\n%d is been popped",arr[top+1]);
+
+}
+int peep(int i)
+{
+    if (i>100 & i<-1){
+    printf("NO such elsent");
+    return 0;
+    }
+    return arr[top-i+1];      
+}
+void change(int i)
+{ 
+    int d;
+    printf("\ngive interchangable no. : ");
+    scanf("%d",&d);
+    arr[top -i +1 ]=d;
+}
+void display(int top)
+{
+    for(int i = top; i>-1 ;i--)
+      printf("%d ",arr[i]);
+}
